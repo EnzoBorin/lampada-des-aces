@@ -1,0 +1,62 @@
+body {
+  text-align: center;
+  background: #222;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+img {
+  width: 200px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.contador {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.botoes {
+  margin-top: 15px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.ligar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.ligar:hover {
+  background-color: #45a049;
+}
+
+.desligar {
+  background-color: #f44336;
+  color: white;
+}
+
+.desligar:hover {
+  background-color: #d7352a;
+}
+
+/* Explosão */
+.explodida {
+  animation: tremer 0.15s infinite alternate;
+  filter: drop-shadow(0 0 20px red);
+}
+
+@keyframes tremer {
+  from { transform: translateX(-4px); }
+  to { transform: translateX(4px); }
+}
