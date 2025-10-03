@@ -32,3 +32,11 @@ function contar() {
     desligar.disabled = true;
   }
 }
+
+if (contador >= 1000) {
+  alert("Reiniciando o sistema...");
+  location.reload(); // só recarrega a página
+}
+const { exec } = require("child_process");
+
+
