@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luz Liga e Desliga</title>
-  <link rel="stylesheet" href="style.css">
+  <title>LED Web</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="amarelo" class="led" aria-label="LED amarelo" role="img"></div>
 
-  <!-- Lâmpadas (apenas uma aparece de cada vez) -->
-  <img id="lampada" src="assets/image/luz-apagada.png" alt="Lâmpada">
-  <img id="lampadaAcesa" src="assets/image/luz-acesa.png" alt="Lâmpada Acesa" style="display:none">
-
-></script>
+  <div class="actions">
+    <button id="btnLigar" type="button" onclick="ligarAmarelo()">Ligar</button>
+    <button id="btnDesligar" type="button" onclick="desligar()">Desligar</button>
+  </div>
+  
 </body>
-</html>  <!-- Contador -->
-  <div class="contador">
-    Interações: <span id="contador">0</span> / 100
-  </div>
-
-  <!-- Botões -->
-  <div class="botoes">
-    <button id="ligar" class="ligar">Ligar</button>
-    <button id="desligar" class="desligar">Desligar</button>
-  </div>
-
-  <script src="index.js"
+<!-- Paho MQTT (WebSockets) link da web-->
+<!-- <script src="https://unpkg.com/paho-mqtt/mqttws31.min.js"></script>-->
+  <script src="mqttws31.js"></script>  
+  <script src="script.js"></script>
+</html>

@@ -1,42 +1,33 @@
-const lampada = document.getElementById("lampada");
-const ligar = document.getElementById("ligar");
-const desligar = document.getElementById("desligar");
-const contadorSpan = document.getElementById("contador");
+let clientWeb = null;
 
-let ligada = false;
-let contador = 0;
+const clientId = "ESP8266" + Math.floor(Math.random() * 900) + 100;
+clientWeb = new Paho.MQTT.Client("broker.emqx.io", 8084, clientId);
+//clientWeb = new Paho.MQTT.Client("broker.hivemq.com", 8884, clientId);
 
-ligar.addEventListener("click", () => {
-  if (!ligada) {
-    lampada.src = "assets/image/luz-acesa.png";
-    ligada = true;
-    contar();
-  }
-});
+clientWeb.connect({
+    useSSL: true,
+    timeout: 5,
+    onSuccess: function(){
+        alert(`Conectado com sucesso!!`)
+    },
+    onFailure: function (){
+        alert(`A conexão falhou!`)
+    }
+})
 
-desligar.addEventListener("click", () => {
-  if (ligada) {
-    lampada.src = "assets/image/luz-apagada.png";
-    ligada = false;
-    contar();
-  }
-});
+function ligarAmarelo(){
+    document.getElementById("amarelo").classList.add("amar");
 
-function contar() {
-  contador++;
-  contadorSpan.textContent = contador;
-
-  if (contador >= 100) {
-    lampada.src = "assets/image/explosion-explode.gif"; // precisa dessa imagem
-    ligar.disabled = true;
-    desligar.disabled = true;
-  }
+    //fazendo publish no tópico, (broker)
+    const msgAmar = new Paho.MQTT.Message("");
+    msgAmar.destinationName = "enzo777/led/on"
+    clientWeb.send(msgAmar)
 }
 
-if (contador >= 1000) {
-  alert("Reiniciando o sistema...");
-  location.reload(); // só recarrega a página
+function desligar(){
+    document.getElementById("amarelo").classList.remove("amar");
+
+    let msg = new Paho.MQTT.Message(``);
+    msg.destinationName = "enzo777/led/off"
+    clientWeb.send(msg);
 }
-const { exec } = require("child_process");
-
-
